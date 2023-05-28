@@ -2,6 +2,6 @@
 <resources>
 
     <style name="Theme.ToDoJway" parent="android:Theme.Material.Light.NoActionBar" >
-        <item name="android:navigationBarColor">@color/orangeDark</item>
+
     </style>
 </resources>

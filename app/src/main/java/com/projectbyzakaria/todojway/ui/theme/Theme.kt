@@ -15,17 +15,27 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-private val DarkColorScheme = darkColorScheme(
-    primary = OrangeDark,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+private val LightColors = lightColorScheme(
+    primary = lightOrange,
+    onPrimary = white,
+    primaryContainer = lightOrange25,
+    onPrimaryContainer = white,
+    inversePrimary = lightOrange50,
+    secondary = lightGray,
+    scrim = black,
+    onSecondary = black
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary = Orange,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
 
+private val DarkColors = darkColorScheme(
+    primary = darkOrange,
+    onPrimary = darkBackground,
+    primaryContainer = darkOrange25,
+    onPrimaryContainer = white,
+    inversePrimary = darkOrange50,
+    secondary = darkGray,
+    scrim = black,
+    onSecondary = lightGray
 )
 
 @Composable
@@ -36,13 +46,8 @@ fun ToDoJwayTheme(
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        darkTheme -> DarkColors
+        else -> LightColors
     }
     val view = LocalView.current
     if (!view.isInEditMode) {
@@ -56,6 +61,7 @@ fun ToDoJwayTheme(
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,
-        content = content
+        content = content,
+        shapes =shapes
     )
 }
